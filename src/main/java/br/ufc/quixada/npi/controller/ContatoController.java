@@ -34,11 +34,18 @@ public class ContatoController {
 		return "contato/inserir";
 	}
 	
-	@RequestMapping(value = "/inserirContato", method = RequestMethod.GET)
+	@RequestMapping(value = "contato/inserirContato", method = RequestMethod.POST)
 	public String inserirContato(Contato contato, RedirectAttributes ra) {
-		cs.insere(contato);
+		System.out.println("Verificação:"+contato.getNome() +" - " + contato.getFone());
+		try {
+			cs.insere(contato);
+			System.out.println("Inseriu...");
+		} catch (Exception e) {
+			System.out.println("Não inseriu...");
+		}
+		;
 		ra.addFlashAttribute("msg","Contato inserido com sucesso.");
-		return "redirect:contato/listar_contatos";
+		return "redirect:/";
 	}
 
 }

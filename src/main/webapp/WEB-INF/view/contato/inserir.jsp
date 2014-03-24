@@ -25,20 +25,20 @@
 </head>
 <body>
 	<div class="jumbotron">
-		<form role="form">
+		<form role="form" action="inserirContato" method="post">
 			<div class="form-group">
-				<label for="nome">Nome:</label> <input
+				<label for="nome">Nome:</label> 
+				<input
 					type="text" class="form-control" id="nome"
-					placeholder="Seu nome completo">
+					placeholder="Seu nome completo" name="nome" />
 			</div>
 			<div class="form-group">
-				<label for="telefone">Telefone:</label> <input
-					type="text" class="form-control" id="telefone"
-					placeholder="Seu telefone. Ex: (xx) xxxx-xxxx">
+				<label for="fone">Telefone:</label> <input
+					type="text" class="form-control" id="fone"
+					placeholder="Seu telefone. Ex: (xx) xxxx-xxxx" name="fone" />
 			</div>
-	
-			<button type="submit" class="btn btn-default">Submit</button>
 			
+			<input type="submit" class="btn btn-default" value="Inserir">
 		</form>
 
 	</div>

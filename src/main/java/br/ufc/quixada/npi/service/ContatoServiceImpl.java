@@ -21,6 +21,7 @@ public class ContatoServiceImpl implements ContatoService {
 
 	@Transactional
 	public void insere(Contato contato) {
+		System.out.println("Verificação service:"+contato.getNome() +" - " + contato.getFone());
 		contatoRepository.save(contato);
 
 	}

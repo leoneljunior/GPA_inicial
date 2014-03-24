@@ -54,7 +54,8 @@
 				</tr>
 			</c:forEach>
 		</table></br>
-		<a class="btn btn-primary" role="button">Inserir Novo</a></br>
+		<a class="btn btn-primary" role="button" >Inserir Novo</a></br>
+		
 	</div>
 </body>
 </html>
