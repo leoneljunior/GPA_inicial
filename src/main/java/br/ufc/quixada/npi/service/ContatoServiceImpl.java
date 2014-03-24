@@ -20,15 +20,14 @@ public class ContatoServiceImpl implements ContatoService {
 	}
 
 	@Transactional
-	public void insere() {
-		contatoRepository.save(new Contato("João", "(88)3452-4567"));
-		contatoRepository.save(new Contato("Maria", "(88)3452-4568"));
-		contatoRepository.save(new Contato("José", "(88)3452-4569"));
+	public void insere(Contato contato) {
+		contatoRepository.save(contato);
+
 	}
 
 	@Transactional
 	public List<Contato> findAll() {
-		List<Contato> l = contatoRepository.findAll();
+		List<Contato> l = contatoRepository.find();
 		return l;
 	}
 
