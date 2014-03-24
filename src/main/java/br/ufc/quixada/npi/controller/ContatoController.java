@@ -28,7 +28,7 @@ public class ContatoController {
 		return "contato/ola";
 	}
 	
-	@RequestMapping(value = "/inserirContato", method = RequestMethod.GET)
+	@RequestMapping(value = "/contato/inserir", method = RequestMethod.GET)
 	public String redInserir(){
 		return "contato/inserir";
 	}
