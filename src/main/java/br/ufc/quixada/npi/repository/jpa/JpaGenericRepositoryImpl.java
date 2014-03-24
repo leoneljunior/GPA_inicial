@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -22,6 +23,7 @@ public abstract class JpaGenericRepositoryImpl<T> implements
 	private static Logger logger = LoggerFactory
 			.getLogger(JpaGenericRepositoryImpl.class);
 
+	
 	protected EntityManager em;
 
 	/*
@@ -60,7 +62,15 @@ public abstract class JpaGenericRepositoryImpl<T> implements
 	@Override
 	@Transactional
 	public void save(T entity) {
-		em.merge(entity);
+		System.out.println("Chamou Save");
+		System.out.println("Entity: "+entity);
+		System.out.println("Em: "+em);
+    	//if (entity.getId() == null) {
+    		this.em.persist(entity);     		
+    	//}
+    	//else {
+    	//	this.em.merge(entity);    
+    	//}
 	}
 
 	/*
