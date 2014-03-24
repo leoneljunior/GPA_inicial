@@ -2,7 +2,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>br.quixada.ufc.npi</groupId>
-	<artifactId>exemplo-jpa-spring-mvc</artifactId>
+	<artifactId>exemplo-jpa-spring-mvc-bootstrap</artifactId>
 	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
 
@@ -15,6 +15,9 @@
 		<postgresql.version>9.1-901.jdbc4</postgresql.version>
 		<javax.inject.version>1</javax.inject.version>
 		<jstl.version>1.2</jstl.version>
+		<bootstrap.version>3.1.1</bootstrap.version>
+		<jquery.version>2.1.0-2</jquery.version>
+		<jquery-ui.version>1.10.3</jquery-ui.version>
 	</properties>
 
 	<dependencies>
@@ -62,6 +65,21 @@
 			<groupId>postgresql</groupId>
 			<artifactId>postgresql</artifactId>
 			<version>${postgresql.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>bootstrap</artifactId>
+			<version>${bootstrap.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>jquery</artifactId>
+			<version>${jquery.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>jquery-ui</artifactId>
+			<version>${jquery-ui.version}</version>
 		</dependency>
 	</dependencies>
 
