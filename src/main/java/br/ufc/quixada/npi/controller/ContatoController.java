@@ -6,6 +6,7 @@ import javax.inject.Named;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.ufc.quixada.npi.model.Contato;
 import br.ufc.quixada.npi.service.ContatoService;
@@ -34,9 +35,10 @@ public class ContatoController {
 	}
 	
 	@RequestMapping(value = "/inserirContato", method = RequestMethod.GET)
-	public String inserirContato(Contato contato) {
+	public String inserirContato(Contato contato, RedirectAttributes ra) {
 		cs.insere(contato);
-		return "contato/listar_contatos";
+		ra.addFlashAttribute("msg","Contato inserido com sucesso.");
+		return "redirect:contato/listar_contatos";
 	}
 
 }
