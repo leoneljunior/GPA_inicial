@@ -25,25 +25,36 @@
 </head>
 <body>
 	<div class="jumbotron">
-		<h1>Listagem de Contatos</h1>
-		<p>
-			<a class="btn btn-primary btn-lg" role="button">Inserir Novo</a>
-		</p>
+		<h2>Listagem de Contatos</h2>
+		</br></br>
+		<div class="input-group" style="width: 300px; ">
+		
+			<span class="input-group-btn">
+				<button class="btn btn-default" type="button">Buscar</button>
+			</span> <input type="text" class="form-control">
+		</div>
+		
+		</br>
 		<table border="1" class="table table-striped">
 			<thead>
 				<TR>
 
 					<TH>Nome</TH>
 					<TH>Telefone</TH>
+					<TH>Editar</TH>
+					<TH>Excluir</TH>
 				</TR>
 			</thead>
 			<c:forEach var="contato" items="${contatos}">
 				<tr>
 					<td>${contato.nome}</td>
 					<td>${contato.fone}</td>
+					<td><a class="btn btn-primary" role="button">Editar Novo</a></td>
+					<td><a class="btn btn-primary" role="button">Excluir Novo</a></td>
 				</tr>
 			</c:forEach>
-		</table>
+		</table></br>
+		<a class="btn btn-primary" role="button">Inserir Novo</a></br>
 	</div>
 </body>
 </html>
