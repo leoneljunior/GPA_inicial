@@ -6,7 +6,9 @@ import br.ufc.quixada.npi.model.Contato;
 
 public interface ContatoService {
 
-	public abstract void insere(Contato contato);
+	public abstract void salvar(Contato contato);
+
+	public Contato findById(int id);
 
 	public abstract List<Contato> findAll();
 

@@ -1,11 +1,20 @@
 package br.ufc.quixada.npi.controller;
 
+import java.util.List;
+import java.util.Map;
+
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.validation.Valid;
 
-import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.ufc.quixada.npi.model.Contato;
@@ -17,34 +26,83 @@ public class ContatoController {
 	@Inject
 	private ContatoService cs;
 
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String listarContatos(ModelMap model) {
-		model.addAttribute("contatos", cs.findAll());
-		return "contato/listar_contatos";
+	@InitBinder
+	public void setAllowedFields(WebDataBinder dataBinder) {
+		dataBinder.setDisallowedFields("id");
 	}
 
-	@RequestMapping(value = "/hello", method = RequestMethod.GET)
-	public String hello(ModelMap model) {
-		model.addAttribute("nome", "João");
-		return "contato/ola";
+	@RequestMapping(value = "/contato/novo", method = RequestMethod.GET)
+	public String initCreationForm(Map<String, Object> model) {
+		Contato contato = new Contato();
+		model.put("contato", contato);
+		return "contato/criarOuAtualizarContato";
 	}
-	
+
+	@RequestMapping(value = "/contato/novo", method = RequestMethod.POST)
+	public String processCreationForm(@Valid Contato contato, BindingResult result,
+			SessionStatus status) {
+		if (result.hasErrors()) {
+			return "contato/criarOuAtualizarContato";
+		} else {
+			this.cs.salvar(contato);
+			status.setComplete();
+			return "redirect:/contatos/" + contato.getId();
+		}
+	}
+
+	/* Novo metodo Listar */
+
+	@RequestMapping(value = "/contatos", method = RequestMethod.GET)
+	public String processFindForm(Contato contato, BindingResult result,
+			Map<String, Object> model) {
+
+		// allow parameterless GET request for /owners to return all records
+		if (contato.getNome() == null) {
+			contato.setNome(""); // empty string signifies broadest possible
+									// search
+		}
+
+		// find owners by last name
+		List<Contato> results = cs.findAll();
+		if (results.size() < 1) {
+			// no owners found
+			result.rejectValue("lastName", "notFound", "not found");
+			return "owners/findOwners";
+		}
+		if (results.size() > 1) {
+			// multiple owners found
+			model.put("selections", results);
+			return "contato/contatosList";
+		} else {
+			// 1 owner found
+			contato = results.iterator().next();
+			return "redirect:/contatos/";
+		}
+	}
+
+	@RequestMapping("/contatos/{contatoId}")
+	public ModelAndView showOwner(@PathVariable("contatoId") int contatoId) {
+		ModelAndView mav = new ModelAndView("contato/contatoDetails");
+		mav.addObject(this.cs.findById(contatoId));
+		return mav;
+	}
+
+	// Metodos inserir antigos
 	@RequestMapping(value = "/contato/inserir", method = RequestMethod.GET)
-	public String redInserir(){
+	public String redInserir() {
 		return "contato/inserir";
 	}
-	
+
 	@RequestMapping(value = "contato/inserirContato", method = RequestMethod.POST)
 	public String inserirContato(Contato contato, RedirectAttributes ra) {
-		System.out.println("Verificação:"+contato.getNome() +" - " + contato.getFone());
+
 		try {
-			cs.insere(contato);
-			System.out.println("Inseriu...");
+			cs.salvar(contato);
 		} catch (Exception e) {
 			System.out.println("Não inseriu...");
 		}
 		;
-		ra.addFlashAttribute("msg","Contato inserido com sucesso.");
+		ra.addFlashAttribute("msg", "Contato inserido com sucesso.");
 		return "redirect:/";
 	}
 

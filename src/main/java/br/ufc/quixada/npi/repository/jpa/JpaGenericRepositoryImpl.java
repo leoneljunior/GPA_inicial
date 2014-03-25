@@ -4,11 +4,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import javax.inject.Inject;
+import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import javax.persistence.criteria.CriteriaQuery;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,7 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import br.ufc.quixada.npi.repository.GenericRepository;
 
-
+@Named
 public abstract class JpaGenericRepositoryImpl<T> implements
 		GenericRepository<T> {
 
@@ -36,7 +35,7 @@ public abstract class JpaGenericRepositoryImpl<T> implements
 	@Override
 	@PersistenceContext
 	public void setEntityManager(EntityManager em) {
-		logger.debug("Setting EntityManager: {} {} ", this.getClass(), em);
+		//logger.debug("Setting EntityManager: {} {} ", this.getClass(), em);
 		this.em = em;
 	}
 
@@ -66,7 +65,8 @@ public abstract class JpaGenericRepositoryImpl<T> implements
 		System.out.println("Entity: "+entity);
 		System.out.println("Em: "+em);
     	//if (entity.getId() == null) {
-    		this.em.persist(entity);     		
+			this.em.persist(entity);
+    		     		
     	//}
     	//else {
     	//	this.em.merge(entity);    

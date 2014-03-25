@@ -27,17 +27,39 @@
 	<div class="jumbotron">
 		<form role="form" action="inserirContato" method="post">
 			<div class="form-group">
-				<label for="nome">Nome:</label> 
-				<input
-					type="text" class="form-control" id="nome"
-					placeholder="Seu nome completo" name="nome" />
+				<label for="nome">Nome:</label> <input type="text"
+					class="form-control" id="nome" placeholder="Seu nome. Ex: José"
+					name="nome" />
 			</div>
 			<div class="form-group">
-				<label for="fone">Telefone:</label> <input
-					type="text" class="form-control" id="fone"
+				<label for="fone">SobreNome:</label> <input type="text"
+					class="form-control" id="sobreNome"
+					placeholder="Seu sobreNome. Ex: Vieira" name="sobreNome" />
+			</div>
+			
+			<div class="form-group">
+				<label for="fone">Telefone:</label> <input type="text"
+					class="form-control" id="fone"
 					placeholder="Seu telefone. Ex: (xx) xxxx-xxxx" name="fone" />
 			</div>
 			
+			<div class="form-group">
+				<label for="fone">Cidade:</label> <input type="text"
+					class="form-control" id="cidade"
+					placeholder="Sua cidade. Ex: Quixadá" name="cidade" />
+			</div>
+
+			<div class="form-group">
+				<label for="fone">Endereço:</label> <input type="text"
+					class="form-control" id="endereco"
+					placeholder="Seu endereço. Ex: Rua A" name="endereco" />
+			</div>
+
+			<div class="form-group">
+				<label for="email">E-mail:</label> <input type="text"
+					class="form-control" id="email"
+					placeholder="Seu e-mail. Ex: joao@gmail.com" name="email" />
+			</div>
 			<input type="submit" class="btn btn-default" value="Inserir">
 		</form>
 
