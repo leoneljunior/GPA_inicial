@@ -18,10 +18,10 @@
     <datatables:table id="contatos" data="${selections}" cdn="true" row="contato" theme="bootstrap2" 
                       cssClass="table table-striped" paginate="false" info="false" export="pdf">
         <datatables:column title="Nome" cssStyle="width: 150px;" display="html">
-            <spring:url value="/contato/{contatoId}.html" var="contatoUrl">
+            <spring:url value="/contatos/{contatoId}.html" var="contatoUrl">
                 <spring:param name="contatoId" value="${contato.id}"/>
             </spring:url>
-            <a href="${fn:escapeXml(ownerUrl)}"><c:out value="${contato.nome} ${contato.sobreNome}"/></a>
+            <a href="${fn:escapeXml(contatoUrl)}"><c:out value="${contato.nome} ${contato.sobreNome}"/></a>
         </datatables:column>
         <datatables:column title="Nome" display="pdf">
             <c:out value="${contato.nome} ${contato.sobreNome}"/>

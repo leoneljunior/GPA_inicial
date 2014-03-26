@@ -53,7 +53,7 @@ public class ContatoController {
 	/* Novo metodo Listar */
 
 	@RequestMapping(value = "/contatos", method = RequestMethod.GET)
-	public String processFindForm(Contato contato, BindingResult result,
+	public String listaContatos(Contato contato, BindingResult result,
 			Map<String, Object> model) {
 
 		// allow parameterless GET request for /owners to return all records
@@ -82,8 +82,9 @@ public class ContatoController {
 
 	@RequestMapping("/contatos/{contatoId}")
 	public ModelAndView showOwner(@PathVariable("contatoId") int contatoId) {
-		ModelAndView mav = new ModelAndView("contato/contatoDetails");
+		ModelAndView mav = new ModelAndView("/contato/contatoDetails");
 		mav.addObject(this.cs.findById(contatoId));
+		System.out.println("Chamou o método Id:" + contatoId);
 		return mav;
 	}
 
