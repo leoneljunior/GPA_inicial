@@ -29,6 +29,7 @@ public class ContatoController {
 	@Inject
 	private ContatoService cs;
 
+	
 	@InitBinder
 	public void setAllowedFields(WebDataBinder dataBinder) {
 		dataBinder.setDisallowedFields("id");
@@ -115,7 +116,7 @@ public class ContatoController {
 	// Metodos inserir antigos
 	@RequestMapping(value = "/contato/inserir", method = RequestMethod.GET)
 	public String redInserir() {
-		return "contato/inserir2";
+		return "contato/inserir";
 	}
 
 	@RequestMapping(value = "contato/inserirContato", method = RequestMethod.POST)
