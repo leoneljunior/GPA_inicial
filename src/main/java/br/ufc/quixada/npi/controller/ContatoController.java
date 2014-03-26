@@ -104,10 +104,9 @@ public class ContatoController {
 	}
 
 	@RequestMapping("/contatos/{contatoId}")
-	public ModelAndView showOwner(@PathVariable("contatoId") int contatoId) {
+	public ModelAndView detalharContato(@PathVariable("contatoId") int contatoId) {
 		ModelAndView mav = new ModelAndView("/contato/contatoDetails");
 		mav.addObject(this.cs.findById(contatoId));
-		System.out.println("Chamou o método Id:" + contatoId);
 		return mav;
 	}
 
