@@ -16,12 +16,12 @@
 <div class="container">
     <jsp:include page="../fragments/bodyHeader.jsp"/>
     <c:choose>
-        <c:when test="${contato['new']}"><c:set var="method" value="post"/></c:when>
+        <c:when test="${contato['id']  == NULL }"><c:set var="method" value="post"/></c:when>
         <c:otherwise><c:set var="method" value="put"/></c:otherwise>
     </c:choose>
 
     <h2>
-        <c:if test="${contato['new']}">New </c:if> Contato
+        <c:if test="${contato['id']  == NULL }">New </c:if> Contato
     </h2>
     <form:form modelAttribute="contato" method="${method}" class="form-horizontal" id="add-contato-form">
         <petclinic:inputField label="First Name" name="nome"/>
@@ -32,7 +32,7 @@
 
         <div class="form-actions">
             <c:choose>
-                <c:when test="${contato['new']}">
+                <c:when test="${contato['id']  == NULL }">
                     <button type="submit">Add Owner</button>
                 </c:when>
                 <c:otherwise>

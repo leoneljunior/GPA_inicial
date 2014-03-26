@@ -43,7 +43,7 @@
 				<td><c:out value="${contato.email}" /></td>
 			</tr>
 			<tr>
-				<td><spring:url value="{contatoId}/edit.html" var="editUrl">
+				<td><spring:url value="{contatoId}/edit" var="editUrl">
 						<spring:param name="contatoId" value="${contato.id}" />
 					</spring:url> <a href="${fn:escapeXml(editUrl)}" class="btn btn-info">Edite
 						Contato</a></td>

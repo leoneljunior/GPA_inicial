@@ -24,7 +24,7 @@ import br.ufc.quixada.npi.service.ContatoService;
 
 @Named
 @RequestMapping("/")
-@SessionAttributes(types = Contato.class)
+//@SessionAttributes(types = Contato.class)
 public class ContatoController {
 	@Inject
 	private ContatoService cs;
@@ -54,23 +54,25 @@ public class ContatoController {
 		}
 	}
 
-	@RequestMapping(value = "/contato/{contatoId}/edit", method = RequestMethod.GET)
+	@RequestMapping(value = "/contatos/{contatoId}/edit", method = RequestMethod.GET)
 	public String initUpdateOwnerForm(@PathVariable("contatoId") int contatoId,
 			Model model) {
+		System.out.println("Entrou no método");
 		Contato contato = this.cs.findById(contatoId);
 		model.addAttribute(contato);
 		return "contato/createOrUpdateOwnerForm";
 	}
 
-	@RequestMapping(value = "/contato/{contatoId}/edit", method = RequestMethod.PUT)
+	@RequestMapping(value = "/contato/{contatoId}/edit", method = RequestMethod.POST)
 	public String processUpdateOwnerForm(@Valid Contato contato,
 			BindingResult result, SessionStatus status) {
+		System.out.println("Entrou no método: id:" );
 		if (result.hasErrors()) {
 			return "contato/createOrUpdateOwnerForm";
 		} else {
 			this.cs.salvar(contato);
 			status.setComplete();
-			return "redirect:/contato/{ownerId}";
+			return "redirect:/contatos/{contatoId}";
 		}
 	}
 
