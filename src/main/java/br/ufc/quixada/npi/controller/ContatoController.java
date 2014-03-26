@@ -53,7 +53,7 @@ public class ContatoController {
 		}
 	}
 
-	@RequestMapping(value = "/contato/{contatoId}/edite", method = RequestMethod.GET)
+	@RequestMapping(value = "/contato/{contatoId}/edit", method = RequestMethod.GET)
 	public String initUpdateOwnerForm(@PathVariable("contatoId") int contatoId,
 			Model model) {
 		Contato contato = this.cs.findById(contatoId);
@@ -61,7 +61,7 @@ public class ContatoController {
 		return "contato/createOrUpdateOwnerForm";
 	}
 
-	@RequestMapping(value = "/contato/{contatoId}/edite", method = RequestMethod.PUT)
+	@RequestMapping(value = "/contato/{contatoId}/edit", method = RequestMethod.PUT)
 	public String processUpdateOwnerForm(@Valid Contato contato,
 			BindingResult result, SessionStatus status) {
 		if (result.hasErrors()) {
@@ -115,7 +115,7 @@ public class ContatoController {
 	// Metodos inserir antigos
 	@RequestMapping(value = "/contato/inserir", method = RequestMethod.GET)
 	public String redInserir() {
-		return "contato/inserir";
+		return "contato/inserir2";
 	}
 
 	@RequestMapping(value = "contato/inserirContato", method = RequestMethod.POST)

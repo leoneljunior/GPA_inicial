@@ -43,13 +43,11 @@
 				<td><c:out value="${contato.email}" /></td>
 			</tr>
 			<tr>
-				<td><spring:url value="{contatoId}/edite.html" var="editUrl">
+				<td><spring:url value="{contatoId}/edit.html" var="editUrl">
 						<spring:param name="contatoId" value="${contato.id}" />
-					</spring:url> <a href="${fn:escapeXml(editUrl)}" class="btn btn-info">Edit Contato</a></td>
-				<td><spring:url value="{contatoId}/contato/novo.html"
-						var="addUrl">
-						<spring:param name="contatoId" value="${contato.id}" />
-					</spring:url> <a href="${fn:escapeXml(addUrl)}" class="btn btn-success">Add New Pet</a></td>
+					</spring:url> <a href="${fn:escapeXml(editUrl)}" class="btn btn-info">Edite
+						Contato</a></td>
+
 			</tr>
 		</table>
 
