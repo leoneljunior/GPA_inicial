@@ -22,7 +22,6 @@ public abstract class JpaGenericRepositoryImpl<T> implements
 	private static Logger logger = LoggerFactory
 			.getLogger(JpaGenericRepositoryImpl.class);
 
-	
 	protected EntityManager em;
 
 	/*
@@ -35,7 +34,7 @@ public abstract class JpaGenericRepositoryImpl<T> implements
 	@Override
 	@PersistenceContext
 	public void setEntityManager(EntityManager em) {
-		//logger.debug("Setting EntityManager: {} {} ", this.getClass(), em);
+		logger.debug("Setting EntityManager: {} {} ", this.getClass(), em);
 		this.em = em;
 	}
 
@@ -61,16 +60,7 @@ public abstract class JpaGenericRepositoryImpl<T> implements
 	@Override
 	@Transactional
 	public void save(T entity) {
-		System.out.println("Chamou Save");
-		System.out.println("Entity: "+entity);
-		System.out.println("Em: "+em);
-    	//if (entity.getId() == null) {
-			this.em.persist(entity);
-    		     		
-    	//}
-    	//else {
-    	//	this.em.merge(entity);    
-    	//}
+		this.em.merge(entity);
 	}
 
 	/*
@@ -106,7 +96,7 @@ public abstract class JpaGenericRepositoryImpl<T> implements
 	@Override
 	public List<T> find() {
 		return find(-1, -1);
-		
+
 	}
 
 	/*

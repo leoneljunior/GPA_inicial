@@ -29,11 +29,6 @@ public class ContatoController {
 	@Inject
 	private ContatoService cs;
 
-	
-	@InitBinder
-	public void setAllowedFields(WebDataBinder dataBinder) {
-		dataBinder.setDisallowedFields("id");
-	}
 
 	@RequestMapping(value = "/contato/new", method = RequestMethod.GET)
 	public String initCreationForm(Map<String, Object> model) {
@@ -63,13 +58,15 @@ public class ContatoController {
 		return "contato/createOrUpdateOwnerForm";
 	}
 
-	@RequestMapping(value = "/contato/{contatoId}/edit", method = RequestMethod.POST)
+	@RequestMapping(value = "/contatos/{contatoId}/edit", method = RequestMethod.PUT)
 	public String processUpdateOwnerForm(@Valid Contato contato,
 			BindingResult result, SessionStatus status) {
-		System.out.println("Entrou no método: id:" );
+	
 		if (result.hasErrors()) {
-			return "contato/createOrUpdateOwnerForm";
+			return "contatos/createOrUpdateOwnerForm";
 		} else {
+			//contato.setId(contatoId);
+			System.out.println("Entrou no método 2, id:" +contato.getId() );	
 			this.cs.salvar(contato);
 			status.setComplete();
 			return "redirect:/contatos/{contatoId}";
@@ -109,6 +106,7 @@ public class ContatoController {
 	@RequestMapping("/contatos/{contatoId}")
 	public ModelAndView detalharContato(@PathVariable("contatoId") int contatoId) {
 		ModelAndView mav = new ModelAndView("/contato/contatoDetails");
+		System.out.println("Entrou no método 2, id:" +contatoId );
 		mav.addObject(this.cs.findById(contatoId));
 		return mav;
 	}
