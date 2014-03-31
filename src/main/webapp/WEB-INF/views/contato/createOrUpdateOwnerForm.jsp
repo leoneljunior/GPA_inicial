@@ -24,6 +24,7 @@
         <c:if test="${contato['id']  == NULL }">New </c:if> Contato
     </h2>
     <form:form modelAttribute="contato" method="${method}" class="form-horizontal" id="add-contato-form">
+       	<input type="hidden" name="id" value="${contato['id']}" />
         <petclinic:inputField label="First Name" name="nome"/>
         <petclinic:inputField label="Last Name" name="sobreNome"/>
         <petclinic:inputField label="Address" name="endereco"/>

@@ -66,7 +66,8 @@ public class ContatoController {
 			return "contatos/createOrUpdateOwnerForm";
 		} else {
 			//contato.setId(contatoId);
-			System.out.println("Entrou no método 2, id:" +contato.getId() );	
+			System.out.println("Entrou no método 2, id:" +contato.getId() );
+			//contato.setId(Integer.parseInt("{contatoId}"));
 			this.cs.salvar(contato);
 			status.setComplete();
 			return "redirect:/contatos/{contatoId}";
