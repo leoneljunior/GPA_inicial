@@ -28,11 +28,11 @@
         </datatables:column>
         <datatables:column title="Endereço" property="endereco" cssStyle="width: 200px;"/>
         <datatables:column title="Cidade" property="cidade"/>
-        <datatables:column title="Telefone" property="fone"/>
-   
+        <datatables:column title="Telefone" property="fone"/>   
        
     </datatables:table>
     
+   
     <jsp:include page="../fragments/footer.jsp"/>
 
 </div>
