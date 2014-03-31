@@ -58,6 +58,8 @@ public class ContatoController {
 		return "contato/createOrUpdateOwnerForm";
 	}
 
+	
+	
 	@RequestMapping(value = "/contatos/{contatoId}/edit", method = RequestMethod.PUT)
 	public String processUpdateOwnerForm(@Valid Contato contato,
 			BindingResult result, SessionStatus status) {
