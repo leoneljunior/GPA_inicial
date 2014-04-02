@@ -50,8 +50,8 @@ INSERT INTO users(
 		<authentication-provider>
 			<jdbc-user-service data-source-ref="dataSource"
 				users-by-username-query="
-                    SELECT login, password, enabled
-                    FROM users WHERE login = ?"
+                    SELECT login, password, habilitado
+                    FROM usuario WHERE login = ?"
 
 				authorities-by-username-query="
                     SELECT login,
@@ -60,7 +60,7 @@ INSERT INTO users(
                             THEN 'ROLE_ADMIN'
                             ELSE 'ROLE_USER'
                     END
-                    FROM users WHERE login = ?" />
+                    FROM usuario WHERE login = ?" />
 		</authentication-provider>
  	</authentication-manager>
   
