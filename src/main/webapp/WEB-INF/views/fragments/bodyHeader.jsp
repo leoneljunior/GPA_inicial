@@ -1,5 +1,6 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 
 <spring:url value="/resources/images/banner-graphic.png" var="banner"/>
@@ -25,6 +26,8 @@
 			<li style="width: 80px;"><a href="#"
 				title="not available yet. Work in progress!!"><i
 					class=" icon-question-sign"></i> Help</a></li>
+			<li style="width: 80px;"><a href="<c:url value="j_spring_security_logout" />" >
+				Logout </a></li>
 		</ul>
 	</div>
 </div>
