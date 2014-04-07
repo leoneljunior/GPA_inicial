@@ -19,6 +19,9 @@ PetClinic :: a Spring Framework demonstration
 <spring:url value="/webjars/jquery/2.1.0/jquery.js" var="jQuery" />
 <script src="${jQuery}"></script>
 
+<spring:url value="/webjars/bootstrap/3.1.1/js/bootstrap.min.js" var="bootstrapJs" />
+<script src="${bootstrapJs}"></script>
+
 <!-- jquery-ui.js file is really big so we only load what we need instead of loading everything -->
 <spring:url value="/webjars/jquery-ui/1.10.3/ui/jquery.ui.core.js"
 	var="jQueryUiCore" />
