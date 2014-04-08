@@ -37,15 +37,15 @@ public class ContatoController {
 		return "contato/createOrUpdateOwnerForm";
 	}
 
-	@RequestMapping(value = "/contato/new", method = RequestMethod.POST)
+	@RequestMapping(value = "/contatos", method = RequestMethod.POST)
 	public String processCreationForm(@Valid Contato contato,
 			BindingResult result, SessionStatus status) {
 		if (result.hasErrors()) {
-			return "contato/createOrUpdateOwnerForm";
+			return "contatos";
 		} else {
 			this.cs.salvar(contato);
 			status.setComplete();
-			return "redirect:/contatos/" + contato.getId();
+			return "redirect:/contatos/";
 		}
 	}
 
