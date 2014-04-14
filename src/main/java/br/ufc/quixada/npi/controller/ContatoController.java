@@ -9,22 +9,17 @@ import javax.validation.Valid;
 
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.ufc.quixada.npi.model.Contato;
 import br.ufc.quixada.npi.service.ContatoService;
 
 @Named
 @RequestMapping("/")
-//@SessionAttributes(types = Contato.class)
 public class ContatoController {
 	@Inject
 	private ContatoService cs;
@@ -112,27 +107,6 @@ public class ContatoController {
 		System.out.println("Entrou no método 2, id:" +contatoId );
 		mav.addObject(this.cs.findById(contatoId));
 		return mav;
-	}
-
-	/* Metodos antigos */
-
-	// Metodos inserir antigos
-	@RequestMapping(value = "/contato/inserir", method = RequestMethod.GET)
-	public String redInserir() {
-		return "contato/inserir";
-	}
-
-	@RequestMapping(value = "contato/inserirContato", method = RequestMethod.POST)
-	public String inserirContato(Contato contato, RedirectAttributes ra) {
-
-		try {
-			cs.salvar(contato);
-		} catch (Exception e) {
-			System.out.println("Não inseriu...");
-		}
-		;
-		ra.addFlashAttribute("msg", "Contato inserido com sucesso.");
-		return "redirect:/";
 	}
 
 }

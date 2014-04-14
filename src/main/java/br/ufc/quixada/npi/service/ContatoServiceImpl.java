@@ -35,6 +35,11 @@ public class ContatoServiceImpl implements ContatoService {
 		List<Contato> l = contatoRepository.find();
 		return l;
 	}
+	@Transactional
+	public void delete(Contato contato) {
+		contatoRepository.delete(contato);
+		 
+	}
 
 	
 
