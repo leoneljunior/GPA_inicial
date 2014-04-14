@@ -15,7 +15,7 @@
 		</div>
 		<div class="collapse navbar-collapse">
 			<ul class="nav navbar-nav">
-				<li><a href="">Home</a></li>
+				<li><a href="./">Home</a></li>
 				<li><a href="#about">About</a></li>
 				<li><a href="#contact">Contact</a></li>
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
@@ -26,8 +26,7 @@
 						<li class="divider"></li>
 						<li><a href="contatos">Listar</a></li>
 					</ul></li>
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
-					data-toggle="dropdown">Sair<b class="caret"></b></a>
+				<li><a href="<c:url value="j_spring_security_logout" />">Sair</a></li>
 			</ul>
 		</div>
 		<!-- /.nav-collapse -->
