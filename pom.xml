@@ -7,6 +7,10 @@
 	<version>0.0.1-SNAPSHOT</version>
 
 	<properties>
+		
+		<!-- Jackson JSON Mapper -->
+		<jackson.version>1.9.10</jackson.version>
+	
 		<!-- Generic properties -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
@@ -43,6 +47,12 @@
 
 	<dependencies>
 
+		<!-- Jackson JSON Mapper -->
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
 
 		<!-- Java EE / Java SE dependencies -->
 		<dependency>

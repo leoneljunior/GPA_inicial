@@ -9,11 +9,10 @@ import javax.validation.Valid;
 
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
@@ -24,12 +23,24 @@ import br.ufc.quixada.npi.service.ContatoService;
 
 @Named
 @RequestMapping("/")
-//@SessionAttributes(types = Contato.class)
+
 public class ContatoController {
 	@Inject
 	private ContatoService cs;
 
 
+	@RequestMapping(value="contatos/{contatoId}", method = RequestMethod.GET)
+	public @ResponseBody Contato getContatoJson() {
+ 
+		Contato contato = new Contato();
+		contato.setNome("Junior");
+		contato.setEmail("juniot@com.com");
+ 
+		return contato;
+ 
+	}
+	
+	
 	@RequestMapping(value = "/contato/new", method = RequestMethod.GET)
 	public String initCreationForm(Map<String, Object> model) {
 		Contato contato = new Contato();
@@ -55,7 +66,7 @@ public class ContatoController {
 		System.out.println("Entrou no método");
 		Contato contato = this.cs.findById(contatoId);
 		model.addAttribute(contato);
-		return "contato/createOrUpdateOwnerForm";
+		return "/contatos";
 	}
 
 	
@@ -65,14 +76,14 @@ public class ContatoController {
 			BindingResult result, SessionStatus status) {
 	
 		if (result.hasErrors()) {
-			return "contatos/createOrUpdateOwnerForm";
+			return "/contatos/";
 		} else {
 			//contato.setId(contatoId);
-			System.out.println("Entrou no método 2, id:" +contato.getId() );
+			System.out.println("Entrou no método 2, id:" + contato.getId() );
 			//contato.setId(Integer.parseInt("{contatoId}"));
 			this.cs.salvar(contato);
 			status.setComplete();
-			return "redirect:/contatos/{contatoId}";
+			return "/contatos";
 		}
 	}
 
