@@ -4,32 +4,32 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="datatables"
 	uri="http://github.com/dandelion/datatables"%>
-<%@ taglib prefix="gpa" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="gpa" tagdir="/WEB-INF/tags"%>
 
 <html lang="en">
 
 <head>
-	<jsp:include page="../fragments/headTag.jsp" />
-	
-	<script src="<c:url value="/resources/js/npi.js" />"></script>
+<jsp:include page="../fragments/headTag.jsp" />
+
+<script src="<c:url value="/resources/js/npi.js" />"></script>
 </head>
 
 <body>
 
 	<div class="container">
 		<jsp:include page="../fragments/bodyHeader.jsp" />
-		
-		<c:url value="/resources/js/npi.js"/>		
-		
+
+		<c:url value="/resources/js/npi.js" />
+
 		<h2>Contatos</h2>
-		
+
 		<!-- Button trigger modal -->
 		<button class="btn btn-primary" data-toggle="modal"
 			data-target="#myModal">Adicionar Contato</button>
-			
+
 		<datatables:table id="contatos" data="${selections}" cdn="true"
 			row="contato" theme="bootstrap2" cssClass="table table-striped"
 			paginate="false" info="false" export="pdf">
@@ -50,9 +50,11 @@
 			<datatables:column title="Telefone" property="fone" />
 			<datatables:column title="Editar">
 				<button class="btn btn-primary editarContato" data-toggle="modal"
-			data-target="#myModal" onclick="povoaForm('<c:url value="${contato.id}" />', '#add-contato-form');">Editar Contato</button>
+					data-target="#myModal"
+					onclick="povoaForm('<c:url value="${contato.id}" />', '#add-contato-form');">Editar
+					Contato</button>
 			</datatables:column>
-			
+
 
 		</datatables:table>
 
@@ -81,14 +83,59 @@
 							<c:if test="${contato['id']  == NULL }">New </c:if>
 							Contato
 						</h2>
-						<form:form modelAttribute="contato" method="${method}" class="form-horizontal" id="add-contato-form">
+						<form:form modelAttribute="contato" method="${method}"
+							class="form-horizontal" id="add-contato-form">
+
 							<input type="hidden" name="id" value="${contato['id']}" />
-							<gpa:inputField label="First Name" name="nome" />
-							<gpa:inputField label="Last Name" name="sobreNome" />
-							<gpa:inputField label="Address" name="endereco" />
-							<gpa:inputField label="City" name="cidade" />
-							<gpa:inputField label="Telephone" name="fone" />
-	
+							<div class="form-group">
+								<label class="col-sm-2 control-label" for="nome">Nome</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" placeholder="Nome"
+										name="nome" id="nome" />
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-sm-2 control-label" for="sobreNome">SobreNome</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control"
+										placeholder="Sobre Nome" name="sobreNome" id="sobreNome" />
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-sm-2 control-label" for="email">Email</label>
+								<div class="col-sm-10">
+									<input type="email" class="form-control" id="email"
+										placeholder="Email" id="email">
+								</div>
+							</div>
+
+
+							<div class="form-group">
+								<label class="col-sm-2 control-label" for="endereco">Endereço</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" placeholder="Endereço"
+										name="endereco" id="endereco" />
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-sm-2 control-label" for="cidade">Cidade</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" placeholder="Cidade"
+										name="cidade" id="cidade" />
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-sm-2 control-label" for="fone">Telefone</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" placeholder="Telefone"
+										name="fone" id="fone" />
+								</div>
+							</div>
+
 							<div class="form-actions">
 								<c:choose>
 									<c:when test="${contato['id']  == NULL }">
