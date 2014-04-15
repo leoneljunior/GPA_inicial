@@ -2,33 +2,35 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-
-<spring:url value="/resources/images/banner-graphic.png" var="banner"/>
-<img src="${banner}"/>
-
- 
-<div class="navbar" style="width: 601px;">
-	<div class="navbar-inner">
-		<ul class="nav">
-			<li style="width: 100px;"><a
-				href="<spring:url value="/" htmlEscape="true" />"><i
-					class="icon-home"></i> Home</a></li>
-			<li style="width: 130px;"><a
-				href="<spring:url value="/contatos.html" htmlEscape="true" />"><i
-					class="icon-search"></i> Listar Contatos</a></li>
-			<li style="width: 140px;"><a
-				href="<spring:url value="/vets.html" htmlEscape="true" />"><i
-					class="icon-th-list"></i> Veterinarians</a></li>
-			<li style="width: 90px;"><a
-				href="<spring:url value="/oups.html" htmlEscape="true" />"
-				title="trigger a RuntimeException to see how it is handled"><i
-					class="icon-warning-sign"></i> Error</a></li>
-			<li style="width: 80px;"><a href="#"
-				title="not available yet. Work in progress!!"><i
-					class=" icon-question-sign"></i> Help</a></li>
-			<li style="width: 80px;"><a href="<c:url value="j_spring_security_logout" />" >
-				Logout </a></li>
-		</ul>
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse"
+				data-target=".navbar-collapse">
+				<span class="sr-only">Toggle navigation</span> <span
+					class="icon-bar"></span> <span class="icon-bar"></span> <span
+					class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="#">GPA</a>
+		</div>
+		<div class="collapse navbar-collapse">
+			<ul class="nav navbar-nav">
+				<li><a href="./">Home</a></li>
+				<li><a href="#about">About</a></li>
+				<li><a href="#contact">Contact</a></li>
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown">Contato <b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<li><a href="contato/new">Adicionar</a></li>
+						<li><a href="#">Excluir</a></li>
+						<li class="divider"></li>
+						<li><a href="contatos">Listar</a></li>
+					</ul></li>
+				<li><a href="<c:url value="j_spring_security_logout" />">Sair</a></li>
+			</ul>
+		</div>
+		<!-- /.nav-collapse -->
 	</div>
-</div>
-
+	<!-- /.container -->
+</nav>
+<!-- /.navbar -->

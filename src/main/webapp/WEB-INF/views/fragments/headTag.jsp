@@ -13,9 +13,6 @@ PetClinic :: a Spring Framework demonstration
 	var="bootstrapCss" />
 <link href="${bootstrapCss}" rel="stylesheet" />
 
-<spring:url value="/resources/css/petclinic.css" var="petclinicCss" />
-<link href="${petclinicCss}" rel="stylesheet" />
-
 <spring:url value="/webjars/jquery/2.1.0/jquery.js" var="jQuery" />
 <script src="${jQuery}"></script>
 
@@ -35,6 +32,9 @@ PetClinic :: a Spring Framework demonstration
 <spring:url value="/webjars/jquery-ui/1.10.3/themes/base/jquery-ui.css"
 	var="jQueryUiCss" />
 <link href="${jQueryUiCss}" rel="stylesheet"></link>
+
+<!-- Js personalizado para editar contato 
+<script src="../../../resources/js/editarContato.js"></script>-->
 
 </head>
 

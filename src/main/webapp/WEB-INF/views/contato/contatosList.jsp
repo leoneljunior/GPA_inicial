@@ -14,6 +14,30 @@
 <jsp:include page="../fragments/headTag.jsp" />
 
 <body>
+
+	<script type="text/javascript">
+	$(document).ready(function(){
+		
+		$("#editarContato").click(function(){
+			
+			$.ajax({ 
+				 type: "GET",
+				 dataType: "json",
+				 url: "http://localhost:8080/exemplo-jpa-spring-mvc/contatos/1",
+				 success: function(data){
+					console.log(data);			
+					document.getElementById("nome").value = data.nome;
+					document.getElementById("sobreNome").value = data.sobreNome;
+					document.getElementById("endereco").value = data.endereco;
+					document.getElementById("email").value = data.email;
+					document.getElementById("fone").value = data.fone;
+					
+				 }
+				 });
+		});
+	});
+	</script>
+
 	<div class="container">
 		<jsp:include page="../fragments/bodyHeader.jsp" />
 		<h2>Contatos</h2>
@@ -42,7 +66,7 @@
 			<datatables:column title="Telefone" property="fone" />
 			<datatables:column title="Editar">
 				<button class="btn btn-primary" data-toggle="modal"
-			data-target="#myModal">Editar Contato</button>
+			data-target="#myModal" id="editarContato">Editar Contato</button>
 			</datatables:column>
 			
 
@@ -76,11 +100,12 @@
 						<form:form modelAttribute="contato" method="${method}" class="form-horizontal" id="add-contato-form">
 							<input type="hidden" name="id" value="${contato['id']}" />
 							<gpa:inputField label="First Name" name="nome" />
+							<input type="text" id="email">
 							<gpa:inputField label="Last Name" name="sobreNome" />
 							<gpa:inputField label="Address" name="endereco" />
 							<gpa:inputField label="City" name="cidade" />
 							<gpa:inputField label="Telephone" name="fone" />
-
+	
 							<div class="form-actions">
 								<c:choose>
 									<c:when test="${contato['id']  == NULL }">

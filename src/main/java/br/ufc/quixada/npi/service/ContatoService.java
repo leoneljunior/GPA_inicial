@@ -8,8 +8,10 @@ public interface ContatoService {
 
 	public abstract void salvar(Contato contato);
 
-	public Contato findById(int id);
+	public abstract Contato findById(int id);
 
 	public abstract List<Contato> findAll();
+
+	public abstract void delete(Contato contato);
 
 }

@@ -12,6 +12,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -24,6 +25,22 @@ public class ContatoController {
 	@Inject
 	private ContatoService cs;
 
+	@RequestMapping(value="contatos/{contatoId}", method = RequestMethod.GET)
+	public @ResponseBody Contato getContatoJson() {
+ 
+		Contato contato = new Contato();
+		contato.setId(1);
+		contato.setNome("Junior");
+		contato.setSobreNome("Leonel");
+		contato.setEmail("juniot@com.com");
+		contato.setFone("8854-6663");
+		contato.setCidade("Irapuan");
+		contato.setEndereco("Rua jose de Tal");
+		
+ 
+		return contato;
+ 
+	}
 
 	@RequestMapping(value = "/contato/new", method = RequestMethod.GET)
 	public String initCreationForm(Map<String, Object> model) {
