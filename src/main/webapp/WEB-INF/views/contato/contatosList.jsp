@@ -11,35 +11,19 @@
 
 <html lang="en">
 
-<jsp:include page="../fragments/headTag.jsp" />
+<head>
+	<jsp:include page="../fragments/headTag.jsp" />
+	
+	<script src="<c:url value="/resources/js/npi.js" />"></script>
+</head>
 
 <body>
 
-	<script type="text/javascript">
-	$(document).ready(function(){
-		
-		$("#editarContato").click(function(){
-			
-			$.ajax({ 
-				 type: "GET",
-				 dataType: "json",
-				 url: "http://localhost:8080/exemplo-jpa-spring-mvc/contatos/1",
-				 success: function(data){
-					console.log(data);			
-					document.getElementById("nome").value = data.nome;
-					document.getElementById("sobreNome").value = data.sobreNome;
-					document.getElementById("endereco").value = data.endereco;
-					document.getElementById("email").value = data.email;
-					document.getElementById("fone").value = data.fone;
-					
-				 }
-				 });
-		});
-	});
-	</script>
-
 	<div class="container">
 		<jsp:include page="../fragments/bodyHeader.jsp" />
+		
+		<c:url value="/resources/js/npi.js"/>		
+		
 		<h2>Contatos</h2>
 		
 		<!-- Button trigger modal -->
@@ -65,8 +49,8 @@
 			<datatables:column title="Cidade" property="cidade" />
 			<datatables:column title="Telefone" property="fone" />
 			<datatables:column title="Editar">
-				<button class="btn btn-primary" data-toggle="modal"
-			data-target="#myModal" id="editarContato">Editar Contato</button>
+				<button class="btn btn-primary editarContato" data-toggle="modal"
+			data-target="#myModal" onclick="povoaForm('<c:url value="${contato.id}" />', '#add-contato-form');">Editar Contato</button>
 			</datatables:column>
 			
 
@@ -100,7 +84,6 @@
 						<form:form modelAttribute="contato" method="${method}" class="form-horizontal" id="add-contato-form">
 							<input type="hidden" name="id" value="${contato['id']}" />
 							<gpa:inputField label="First Name" name="nome" />
-							<input type="text" id="email">
 							<gpa:inputField label="Last Name" name="sobreNome" />
 							<gpa:inputField label="Address" name="endereco" />
 							<gpa:inputField label="City" name="cidade" />

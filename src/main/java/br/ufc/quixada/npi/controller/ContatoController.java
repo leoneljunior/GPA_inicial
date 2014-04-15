@@ -26,19 +26,9 @@ public class ContatoController {
 	private ContatoService cs;
 
 	@RequestMapping(value="contatos/{contatoId}", method = RequestMethod.GET)
-	public @ResponseBody Contato getContatoJson() {
+	public @ResponseBody Contato getContatoJson(@PathVariable("contatoId") int contatoId) {
  
-		Contato contato = new Contato();
-		contato.setId(1);
-		contato.setNome("Junior");
-		contato.setSobreNome("Leonel");
-		contato.setEmail("juniot@com.com");
-		contato.setFone("8854-6663");
-		contato.setCidade("Irapuan");
-		contato.setEndereco("Rua jose de Tal");
-		
- 
-		return contato;
+		return this.cs.findById(contatoId);
  
 	}
 

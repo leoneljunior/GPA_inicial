@@ -4,8 +4,6 @@
 PetClinic :: a Spring Framework demonstration
 -->
 
-<head>
-
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>GPA - Inicial</title>
 
@@ -33,9 +31,5 @@ PetClinic :: a Spring Framework demonstration
 	var="jQueryUiCss" />
 <link href="${jQueryUiCss}" rel="stylesheet"></link>
 
-<!-- Js personalizado para editar contato 
-<script src="../../../resources/js/editarContato.js"></script>-->
-
-</head>
 
 
