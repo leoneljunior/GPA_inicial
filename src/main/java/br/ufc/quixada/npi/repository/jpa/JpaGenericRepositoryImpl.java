@@ -60,6 +60,12 @@ public abstract class JpaGenericRepositoryImpl<T> implements
 	@Override
 	@Transactional
 	public void save(T entity) {
+		this.em.persist(entity);
+	}
+
+	@Override
+	@Transactional
+	public void update(T entity) {
 		this.em.merge(entity);
 	}
 

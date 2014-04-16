@@ -75,7 +75,7 @@
 								<c:set var="method" value="post" />
 							</c:when>
 							<c:otherwise>
-								<c:set var="method" value="post" />
+								<c:set var="method" value="put"/>
 							</c:otherwise>
 						</c:choose>
 
@@ -86,7 +86,8 @@
 						<form:form modelAttribute="contato" method="${method}"
 							class="form-horizontal" id="add-contato-form">
 
-							<input type="hidden" name="id" value="${contato['id']}" />
+							<input type="hidden" name="id" id="id" />
+							
 							<div class="form-group">
 								<label class="col-sm-2 control-label" for="nome">Nome</label>
 								<div class="col-sm-10">
@@ -139,10 +140,10 @@
 							<div class="form-actions">
 								<c:choose>
 									<c:when test="${contato['id']  == NULL }">
-										<button type="submit">Add Owner</button>
+										<button type="submit">Adicionar contato</button>
 									</c:when>
 									<c:otherwise>
-										<button type="submit">Update Owner</button>
+										<button type="submit">Atualizar contato</button>
 									</c:otherwise>
 								</c:choose>
 							</div>

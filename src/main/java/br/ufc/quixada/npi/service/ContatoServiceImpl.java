@@ -26,6 +26,13 @@ public class ContatoServiceImpl implements ContatoService {
 	}
 	
 	@Transactional
+	public void  atualizar(Contato contato) {
+		contatoRepository.update(contato);
+
+	}
+
+	
+	@Transactional
 	public Contato findById(int id) {
 		return contatoRepository.find(id);
 		 
