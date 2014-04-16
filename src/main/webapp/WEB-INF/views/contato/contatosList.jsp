@@ -51,7 +51,7 @@
 			<datatables:column title="Editar">
 				<button class="btn btn-primary editarContato" data-toggle="modal"
 					data-target="#myModal"
-					onclick="povoaForm('<c:url value="${contato.id}" />', '#add-contato-form');">Editar
+					onclick="povoaForm('<c:url value="/contatos/${contato.id}" />', '#add-contato-form');">Editar
 					Contato</button>
 			</datatables:column>
 
@@ -106,8 +106,8 @@
 							<div class="form-group">
 								<label class="col-sm-2 control-label" for="email">Email</label>
 								<div class="col-sm-10">
-									<input type="email" class="form-control" id="email"
-										placeholder="Email" id="email">
+									<input type="email" class="form-control" name="email" id="email"
+										placeholder="Email">
 								</div>
 							</div>
 
