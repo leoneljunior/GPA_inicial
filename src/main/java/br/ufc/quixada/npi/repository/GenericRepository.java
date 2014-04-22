@@ -12,6 +12,8 @@ public interface GenericRepository<T> {
 	public abstract void setEntityManager(EntityManager em);
 
 	public abstract void save(T entity);
+	
+	public abstract void update(T entity);
 
 	public abstract void delete(T entity);
 
@@ -79,5 +81,7 @@ public interface GenericRepository<T> {
 	 */
 	public abstract T findFirst(QueryType type, String query,
 			Map<String, Object> namedParams, int firstResult, int maxResults);
+
+	
 
 }

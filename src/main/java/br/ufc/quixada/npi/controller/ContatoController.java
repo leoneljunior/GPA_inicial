@@ -20,17 +20,19 @@ import br.ufc.quixada.npi.model.Contato;
 import br.ufc.quixada.npi.service.ContatoService;
 
 @Named
-@RequestMapping("/")
+@RequestMapping("/contatos")
 public class ContatoController {
 	@Inject
 	private ContatoService cs;
 
-	@RequestMapping(value="contatos/{contatoId}", method = RequestMethod.GET)
+	@RequestMapping(value="{contatoId}", method = RequestMethod.GET)
 	public @ResponseBody Contato getContatoJson(@PathVariable("contatoId") int contatoId) {
  
 		return this.cs.findById(contatoId);
  
 	}
+	
+	/*---------------------------------------------------------------------------------------------------------*/
 
 	@RequestMapping(value = "/contato/new", method = RequestMethod.GET)
 	public String initCreationForm(Map<String, Object> model) {
@@ -39,7 +41,7 @@ public class ContatoController {
 		return "contato/createOrUpdateOwnerForm";
 	}
 
-	@RequestMapping(value = "/contatos", method = RequestMethod.POST)
+	@RequestMapping(value = "/", method = RequestMethod.POST)
 	public String processCreationForm(@Valid Contato contato,
 			BindingResult result, SessionStatus status) {
 		if (result.hasErrors()) {
@@ -72,7 +74,7 @@ public class ContatoController {
 			//contato.setId(contatoId);
 			System.out.println("Entrou no método 2, id:" +contato.getId() );
 			//contato.setId(Integer.parseInt("{contatoId}"));
-			this.cs.salvar(contato);
+			this.cs.atualizar(contato);
 			status.setComplete();
 			return "redirect:/contatos/{contatoId}";
 		}
@@ -80,7 +82,7 @@ public class ContatoController {
 
 	/* Novo metodo Listar Funcionando pela metade */
 
-	@RequestMapping(value = "/contatos", method = RequestMethod.GET)
+	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String listaContatos(Contato contato, BindingResult result,
 			Map<String, Object> model) {
 
