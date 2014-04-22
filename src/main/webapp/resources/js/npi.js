@@ -5,7 +5,7 @@ function povoaForm(uri, form) {
 		dataType : "json",
 		url : uri,
 		success : function(data) {
-			
+
 			populate(form, data);
 
 		}
@@ -18,3 +18,37 @@ function populate(frm, data) {
 		$('[name=' + key + ']', frm).val(value);
 	});
 }
+
+$(document).ready(function() {
+
+	$("#btnAdicionar").click(function() {
+		var form = $("#add-contato-form");
+		form.attr("method","post");
+	});
+
+	$("#btnEditar").click(function() {
+		var form = $("#add-contato-form");
+		form.attr("method","put");
+	});
+
+	$("#myModal").on("hidden.bs.modal", function(e) {
+
+		console.log("TESTE");
+		document.getElementById("add-contato-form").reset();
+
+	});
+
+});
+
+function excluir(uri) {
+
+	$.ajax({
+		type : "DELETE",
+		url : uri,
+		success : function(data) {
+
+
+		}
+	});
+
+};

@@ -24,10 +24,11 @@
 
 		<c:url value="/resources/js/npi.js" />
 
+		<br><br>
 		<h2>Contatos</h2>
 
 		<!-- Button trigger modal -->
-		<button class="btn btn-primary" data-toggle="modal"
+		<button id="btnAdicionar" class="btn btn-primary" data-toggle="modal"
 			data-target="#myModal">Adicionar Contato</button>
 
 		<datatables:table id="contatos" data="${selections}" cdn="true"
@@ -49,10 +50,15 @@
 			<datatables:column title="Cidade" property="cidade" />
 			<datatables:column title="Telefone" property="fone" />
 			<datatables:column title="Editar">
-				<button class="btn btn-primary editarContato" data-toggle="modal"
+				<button id="btnEditar" class="btn btn-primary editarContato" data-toggle="modal"
 					data-target="#myModal"
 					onclick="povoaForm('<c:url value="/contatos/${contato.id}" />', '#add-contato-form');">Editar
-					Contato</button>
+					</button>
+			</datatables:column>
+			<datatables:column title="Excluir">
+					<button id="btnExcluir" class="btn btn-primary"
+					onclick="excluir('<c:url value="/contatos/${contato.id}" />');">Excluir
+					</button>
 			</datatables:column>
 
 
@@ -69,10 +75,13 @@
 						<h4 class="modal-title" id="myModalLabel">Modal title</h4>
 					</div>
 					<div class="modal-body">
-
+						
+						<c:set var="idContato"/>
+						
 						<c:choose>
 							<c:when test="${contato['id']  == NULL }">
-								<c:set var="method" value="post" />
+							
+								<c:set var="method" value="post"/>
 							</c:when>
 							<c:otherwise>
 								<c:set var="method" value="put"/>
@@ -80,8 +89,9 @@
 						</c:choose>
 
 						<h2>
-							<c:if test="${contato['id']  == NULL }">New </c:if>
+							<c:if test="${contato['id']  != NULL }">Novo </c:if>
 							Contato
+							<c:out value="${contato['id']}"></c:out>
 						</h2>
 						<form:form modelAttribute="contato" method="${method}"
 							class="form-horizontal" id="add-contato-form">
@@ -140,10 +150,10 @@
 							<div class="form-actions">
 								<c:choose>
 									<c:when test="${contato['id']  == NULL }">
-										<button type="submit">Adicionar contato</button>
+										<button class="btn btn-primary" type="submit">Adicionar contato</button>
 									</c:when>
 									<c:otherwise>
-										<button type="submit">Atualizar contato</button>
+										<button class="btn btn-primary" type="submit">Atualizar contato</button>
 									</c:otherwise>
 								</c:choose>
 							</div>

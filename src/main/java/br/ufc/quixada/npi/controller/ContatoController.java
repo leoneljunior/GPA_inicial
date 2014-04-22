@@ -32,57 +32,12 @@ public class ContatoController {
  
 	}
 	
-	/*---------------------------------------------------------------------------------------------------------*/
-
-	@RequestMapping(value = "/contato/new", method = RequestMethod.GET)
-	public String initCreationForm(Map<String, Object> model) {
-		Contato contato = new Contato();
-		model.put("contato", contato);
-		return "contato/createOrUpdateOwnerForm";
-	}
-
-	@RequestMapping(value = "/", method = RequestMethod.POST)
-	public String processCreationForm(@Valid Contato contato,
-			BindingResult result, SessionStatus status) {
-		if (result.hasErrors()) {
-			return "contatos";
-		} else {
-			this.cs.salvar(contato);
-			status.setComplete();
-			return "redirect:/contatos/";
-		}
-	}
-
-	@RequestMapping(value = "/contatos/{contatoId}/edit", method = RequestMethod.GET)
-	public String initUpdateOwnerForm(@PathVariable("contatoId") int contatoId,
-			Model model) {
-		System.out.println("Entrou no método");
-		Contato contato = this.cs.findById(contatoId);
-		model.addAttribute(contato);
-		return "contato/createOrUpdateOwnerForm";
-	}
-
+	
+	/*-- RETIRAR OS REDIRECTS, ACHO QUE USANDO AJAX --*/
 	
 	
-	@RequestMapping(value = "/contatos/{contatoId}/edit", method = RequestMethod.PUT)
-	public String processUpdateOwnerForm(@Valid Contato contato,
-			BindingResult result, SessionStatus status) {
-	
-		if (result.hasErrors()) {
-			return "contatos/createOrUpdateOwnerForm";
-		} else {
-			//contato.setId(contatoId);
-			System.out.println("Entrou no método 2, id:" +contato.getId() );
-			//contato.setId(Integer.parseInt("{contatoId}"));
-			this.cs.atualizar(contato);
-			status.setComplete();
-			return "redirect:/contatos/{contatoId}";
-		}
-	}
-
-	/* Novo metodo Listar Funcionando pela metade */
-
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	/* Verificar porque não funciona com 0 ou 1 contatos */
+	@RequestMapping(value = "", method = RequestMethod.GET)
 	public String listaContatos(Contato contato, BindingResult result,
 			Map<String, Object> model) {
 
@@ -97,7 +52,7 @@ public class ContatoController {
 		if (results.size() < 1) {
 			// no owners found
 			result.rejectValue("lastName", "notFound", "not found");
-			return "owners/findOwners";
+			return "contato/contatosList";
 		}
 		if (results.size() > 1) {
 			// multiple owners found
@@ -106,9 +61,80 @@ public class ContatoController {
 		} else {
 			// 1 owner found
 			contato = results.iterator().next();
-			return "redirect:/contatos/";
+			return "contato/contatosList";
 		}
 	}
+	
+	@RequestMapping(value = "", method = RequestMethod.PUT)
+	public String atualizarContato(@Valid Contato contato,
+			BindingResult result, SessionStatus status) {
+	
+		if (result.hasErrors()) {
+			/* mandar mensagem de erro para o form */
+			return "contato/contatosList";
+		} else {
+			//contato.setId(contatoId);
+			System.out.println("Entrou no método 2, id:" +contato.getId() );
+			//contato.setId(Integer.parseInt("{contatoId}"));
+			this.cs.atualizar(contato);
+			status.setComplete();
+			return "redirect:/contatos";
+		}
+	}
+	
+	@RequestMapping(value = "", method = RequestMethod.POST)
+	public String adicionarContato(@Valid Contato contato,
+			BindingResult result, SessionStatus status) {
+		if (result.hasErrors()) {
+			/*incluir erros*/
+			return "redirect:/contatos";
+		} else {
+			this.cs.salvar(contato);
+			status.setComplete();
+			return "redirect:/contatos";
+		}
+	}	
+	
+	@RequestMapping(value = "/{contatoId}", method = RequestMethod.DELETE)
+	public String deletarContato(@PathVariable("contatoId") int contatoId) {
+		Contato contato = this.cs.findById(contatoId);
+		
+		if (contato == null) {
+			/*incluir erros*/
+			return "redirect:/contatos";
+		} else {
+			this.cs.delete(contato);
+			return "redirect:/contatos";
+		}
+	}	
+	
+	/*---------------------------------------------------------------------------------------------------------*/
+
+	@RequestMapping(value = "/contato/new", method = RequestMethod.GET)
+	public String initCreationForm(Map<String, Object> model) {
+		Contato contato = new Contato();
+		model.put("contato", contato);
+		return "contato/createOrUpdateOwnerForm";
+	}
+
+
+
+	@RequestMapping(value = "/contatos/{contatoId}/edit", method = RequestMethod.GET)
+	public String initUpdateOwnerForm(@PathVariable("contatoId") int contatoId,
+			Model model) {
+		System.out.println("Entrou no método");
+		Contato contato = this.cs.findById(contatoId);
+		model.addAttribute(contato);
+		return "contato/createOrUpdateOwnerForm";
+	}
+
+	
+	
+	
+
+	/* Novo metodo Listar Funcionando pela metade */
+
+	
 
 	@RequestMapping("/contatos/{contatoId}")
 	public ModelAndView detalharContato(@PathVariable("contatoId") int contatoId) {
